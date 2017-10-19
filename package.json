@@ -1,6 +1,6 @@
 {
   "name": "react-native-growingio",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "GrowingIO SDK for ReactNative",
   "main": "src/index.js",
   "files": [
@@ -10,10 +10,19 @@
     "scripts",
     "src"
   ],
-  "repository": "https://github.com/CliffLeopard/react-native-growingio.git",
+  "repository": {
+    "url": "https://github.com/growingio/react-native-growingio.git",
+    "type": "git"
+  },
   "author": "gaoguanling <gaoguanling@growingio.com>",
-  "keywords": ["Android", "IOS", "ReactNative","GrowingIO","SDK"],
+  "keywords": [
+    "Android",
+    "IOS",
+    "ReactNative",
+    "GrowingIO",
+    "SDK"
+  ],
   "homepage": "https://www.growingio.com/",
-  "bugs": "https://github.com/CliffLeopard/react-native-growingio/issues",
+  "bugs": "https://github.com/growingio/react-native-growingio/issues",
   "license": "MIT"
 }
