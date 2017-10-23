@@ -33,7 +33,7 @@ public class GrowingIOModule extends ReactContextBaseJavaModule implements Activ
     private final String TAG = "GIO.GrowingIOModule";
     private final String CALLBACK_SUCCESS = "200";
 
-    public static final String PAGE_CONDROVA_INIT = "RNInitPage";
+    public static final String PAGE_RN_INIT = "RNInitPage";
     private final String PAGE_INIT_USERID = "RNInitUserIdPage";
     private final String PAGE_CHANGE_USERID = "RNChangeUserIdPage";
     private final String PAGE_CLEAN_USERID = "RNCleanUserIdPage";
@@ -251,9 +251,9 @@ public class GrowingIOModule extends ReactContextBaseJavaModule implements Activ
     @Override
     public void onHostResume() {
         SessionManager.enterNewPage();
-        saveVisit(PAGE_CONDROVA_INIT);
-        trackPage(PAGE_CONDROVA_INIT, currentPageName, System.currentTimeMillis());
-        GrowingIO.getInstance().saveVisit(PAGE_CONDROVA_INIT);
+        saveVisit(PAGE_RN_INIT);
+        trackPage(PAGE_RN_INIT, currentPageName, System.currentTimeMillis());
+        GrowingIO.getInstance().saveVisit(PAGE_RN_INIT);
     }
 
 
