@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18C9C6FA1F9E244C007EEFCA /* libGrowing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C9C6F81F9E244C007EEFCA /* libGrowing.a */; };
+		18C9C6FB1F9E2479007EEFCA /* Growing.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 18C9C6F71F9E244C007EEFCA /* Growing.h */; };
 		18E0BD511F988C9400049DE1 /* GrowingIORNPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E0BD501F988C9400049DE1 /* GrowingIORNPlugin.m */; };
 		18E0BD521F988C9400049DE1 /* GrowingIORNPlugin.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 18E0BD4F1F988C9400049DE1 /* GrowingIORNPlugin.h */; };
 /* End PBXBuildFile section */
@@ -18,6 +20,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				18C9C6FB1F9E2479007EEFCA /* Growing.h in CopyFiles */,
 				18E0BD521F988C9400049DE1 /* GrowingIORNPlugin.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -25,6 +28,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		18C9C6F71F9E244C007EEFCA /* Growing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Growing.h; sourceTree = "<group>"; };
+		18C9C6F81F9E244C007EEFCA /* libGrowing.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGrowing.a; sourceTree = "<group>"; };
+		18C9C6F91F9E244C007EEFCA /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
 		18E0BD4C1F988C9400049DE1 /* libGrowingIORNPlugin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGrowingIORNPlugin.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		18E0BD4F1F988C9400049DE1 /* GrowingIORNPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GrowingIORNPlugin.h; sourceTree = "<group>"; };
 		18E0BD501F988C9400049DE1 /* GrowingIORNPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GrowingIORNPlugin.m; sourceTree = "<group>"; };
@@ -35,15 +41,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18C9C6FA1F9E244C007EEFCA /* libGrowing.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18C9C6F61F9E244C007EEFCA /* GrowingIO-iOS-SDK */ = {
+			isa = PBXGroup;
+			children = (
+				18C9C6F71F9E244C007EEFCA /* Growing.h */,
+				18C9C6F81F9E244C007EEFCA /* libGrowing.a */,
+				18C9C6F91F9E244C007EEFCA /* VERSION */,
+			);
+			path = "GrowingIO-iOS-SDK";
+			sourceTree = "<group>";
+		};
 		18E0BD431F988C9400049DE1 = {
 			isa = PBXGroup;
 			children = (
+				18C9C6F61F9E244C007EEFCA /* GrowingIO-iOS-SDK */,
 				18E0BD4E1F988C9400049DE1 /* GrowingIORNPlugin */,
 				18E0BD4D1F988C9400049DE1 /* Products */,
 			);
@@ -239,6 +257,10 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SXBU677CPT;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GrowingIO-iOS-SDK",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -251,6 +273,10 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SXBU677CPT;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GrowingIO-iOS-SDK",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
