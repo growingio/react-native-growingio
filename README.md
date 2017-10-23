@@ -69,3 +69,30 @@ react-native-growingio 用于RN开发者使用打点的方式采集数据。
 	        }
 	      );
 	      
+### Tips
+
+* 由于最新的ReactNative 打包gradlew存在bug，所以android在打debug包和releae包时要进行如下操作：   
+
+
+1. 在工程目录下
+
+        mkdir Android/app/assets
+       
+2. 在app build.gradle  android中添加：
+ 
+ 
+		sourceSets {
+	        main {
+	            assets.srcDirs = ['assets']
+	        }
+	    }
+	    
+3. 在工程目录下：
+
+ 		react-native bundle --platform android --dev false --entry-file App.js --bundle-output android/app/assets/index.android.bundle  --assets-dest android/app/src/main/res/ 
+ 		
+ 		
+4. demo 可见 examples/HelloDemo
+        
+
+	      
