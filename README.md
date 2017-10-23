@@ -10,12 +10,14 @@ react-native-growingio 用于RN开发者使用打点的方式采集数据。
 
 ### 二、引入
 
-1. 'npm install --save https://github.com/growingio/react-native-growingio.git`
-2. 'npm install'
-3. `react-native link react-native-growingio`
+* `npm install --save https://github.com/growingio/react-native-growingio.git`
+* `npm install`
+* `react-native link react-native-growingio`
 
 ### 三、配置
-* 在android app module级别的build.gradle下添加如下依赖: `compile 'com.growingio.rnbpoint.test:t-vds-rnbpoint-agent:0.0.1-SNAPSHOT'`
+* 在android project 级别的build.gradle下添加如下依赖: `classpath 'com.growingio.android:vds-gradle-plugin:OP-2.0.0'`
+
+* 在android app module 级别的build.gradle下添加如下代码: `apply plugin: 'com.growingio.android'`
 			    
 * 在Application中的onCreate方法中初始化：
 
@@ -23,6 +25,7 @@ react-native-growingio 用于RN开发者使用打点的方式采集数据。
                 .useID()
                 .trackAllFragments()
                 .setChannel("**应用商店"));
+* [添加官网配置](https://www.growingio.com)
     
 ### 四、方法说明
 
