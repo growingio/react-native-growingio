@@ -34,10 +34,10 @@ public class GrowingIOModule extends ReactContextBaseJavaModule implements Activ
     private final String TAG = "GIO.GrowingIOModule";
     private final String CALLBACK_SUCCESS = "200";
 
-    public static final String PAGE_CONDROVA_INIT = "CondrovaInitPage";
-    private final String PAGE_INIT_USERID = "CondrovaInitUserIdPage";
-    private final String PAGE_CHANGE_USERID = "CondrovaChangeUserIdPage";
-    private final String PAGE_CLEAN_USERID = "CondrovaCleanUserIdPage";
+    public static final String PAGE_CONDROVA_INIT = "RNInitPage";
+    private final String PAGE_INIT_USERID = "RNInitUserIdPage";
+    private final String PAGE_CHANGE_USERID = "RNChangeUserIdPage";
+    private final String PAGE_CLEAN_USERID = "RNCleanUserIdPage";
     private String currentPageName;
 
     public GrowingIOModule(ReactApplicationContext reactContext) {
@@ -69,7 +69,6 @@ public class GrowingIOModule extends ReactContextBaseJavaModule implements Activ
     @ReactMethod
     public void track(final String eventName, @Nullable final Double number, @Nullable final String strEventJson, @Nullable final Callback callback) {
 
-        GConfig.DEBUG = true;
         JSONObject eventJson;
         if (TextUtils.isEmpty(eventName)) {
             if (callback != null)
