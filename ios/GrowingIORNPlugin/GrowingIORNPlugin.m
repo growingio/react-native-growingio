@@ -12,6 +12,11 @@
 #define k_DEBUG  @"debug"
 #define k_ZONE   @"zone"
 
+#define PAGE_RN_INIT @"RNInitPage"
+#define PAGE_INIT_USERID @"RNInitUserIdPage"
+#define PAGE_CHANGE_USERID @"RNChangeUserIdPage"
+#define PAGE_CLEAN_USERID @"RNCleanUserIdPage"
+
 NS_INLINE NSString *GROWGetTimestampFromTimeInterval(NSTimeInterval timeInterval) {
   return [NSNumber numberWithUnsignedLongLong:timeInterval * 1000.0].stringValue;
 }
@@ -50,7 +55,7 @@ RCT_EXPORT_METHOD(init:(NSString *)accountId strOptionJson:(NSString *)strOption
         }
         [Growing startWithAccountId:accountId];
         [self dispatchInMainThread:^{
-            [Growing trackPageWithPageName:@"RNInitPage" pageTime:GROWGetTimestamp()];
+            [Growing trackPageWithPageName:PAGE_RN_INIT pageTime:GROWGetTimestamp()];
         }];
         NSArray *messageArray = [self setOptions:optionDict];
         if (((NSNumber *)messageArray[0]).intValue == 0) {
@@ -74,11 +79,11 @@ RCT_EXPORT_METHOD(setUserId:(NSString *)userId callback:(RCTResponseSenderBlock)
     [Growing setUserId:userId];
     
     if (lastUserId.length == 0) {
-      [Growing trackPageWithPageName:@"RNInitUserIdPage" pageTime:GROWGetTimestamp()];
+      [Growing trackPageWithPageName:PAGE_INIT_USERID pageTime:GROWGetTimestamp()];
     } else if (lastUserId.length != 0) {
-      [Growing trackPageWithPageName:@"RNChangeUserIdPage" pageTime:GROWGetTimestamp()];
+      [Growing trackPageWithPageName:PAGE_CHANGE_USERID pageTime:GROWGetTimestamp()];
     } else if (lastUserId.length != 0 && userId.length == 0) {
-      [Growing trackPageWithPageName:@"RNCleanUserIdPage" pageTime:GROWGetTimestamp()];
+      [Growing trackPageWithPageName:PAGE_CLEAN_USERID pageTime:GROWGetTimestamp()];
     }
     
     lastUserId = userId;

@@ -11,7 +11,6 @@ import com.facebook.react.bridge.LifecycleEventListener;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
-import com.growingio.android.sdk.collection.GConfig;
 import com.growingio.android.sdk.collection.GrowingIO;
 import com.growingio.android.sdk.collection.SessionManager;
 import com.growingio.android.sdk.utils.LogUtil;
