@@ -27,7 +27,7 @@ import java.util.Map;
  * email  gaoguanling@growingio.com
  */
 
-public class GrowingIOModule extends ReactContextBaseJavaModule implements ActivityEventListener, LifecycleEventListener {
+public class GrowingIOModule extends ReactContextBaseJavaModule implements LifecycleEventListener {
 
     private final String ModuleName = "GrowingIO";
     private final String TAG = "GIO.GrowingIOModule";
@@ -264,11 +264,6 @@ public class GrowingIOModule extends ReactContextBaseJavaModule implements Activ
 
     @Override
     public void onHostDestroy() {
-
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
     }
 }

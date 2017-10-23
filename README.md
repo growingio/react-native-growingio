@@ -10,31 +10,13 @@ react-native-growingio 用于RN开发者使用打点的方式采集数据。
 
 ### 二、引入
 
-1. `yarn add react-native-branch` or `npm install --save react-native-branch`
-2. `react-native link react-native-branch`
+1. 'npm install --save https://github.com/growingio/react-native-growingio.git`
+2. 'npm install'
+3. `react-native link react-native-growingio`
 
 ### 三、配置
 * 在android app module级别的build.gradle下添加如下依赖: `compile 'com.growingio.rnbpoint.test:t-vds-rnbpoint-agent:0.0.1-SNAPSHOT'`
-		
-* 在Application中添加如下代码:  
-
-	    private final ReactNativeHost reactNativeHost = new ReactNativeHost(this) {
-	        @Override
-	        public boolean getUseDeveloperSupport() {
-	            return BuildConfig.DEBUG;
-	        }
-	
-	        @Override
-	        protected List<ReactPackage> getPackages() {
-	            return Arrays.asList(new MainReactPackage(),new GrowingRnPackage());
-	        }
-	    };
-	
-	    @Override
-	    public ReactNativeHost getReactNativeHost() {
-	        return reactNativeHost;
-	    }
-	    
+			    
 * 在Application中的onCreate方法中初始化：
 
         GrowingIO.startWithConfiguration(this, new Configuration()
