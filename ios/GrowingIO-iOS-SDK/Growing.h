@@ -68,12 +68,16 @@ typedef NS_ENUM(NSInteger, GrowingAspectMode)
 + (void)setEnableLog:(BOOL)enableLog;
 + (BOOL)getEnableLog;
 
-// 以下函数设置后会覆盖原有设置
+// 以下四个函数设置后会覆盖原有设置
 // 并且只会在第一次安装后调用 以保证同一设备的设备ID相同
 // 请在方法 startWithAccountId 之前调用
-// 使用自定义的ID 自定义ID长度不可大于64 否则会被抛弃 NSUUID的UUIDString长度为36
-// Example:
-//  1. setDeviceIDModeToCustomBlock:^NSString*{ return [[[UIDevice currentDevice] identifierForVendor] UUIDString]; }
+// 默认使用IDFV，用法：[Growing setDeviceIDModeToIDFV];
+#define setDeviceIDModeToIDFV setDeviceIDModeToCustomBlock:^NSString*{ return [[[UIDevice currentDevice] identifierForVendor] UUIDString]; }
+// 设置使用IDFA，用法：[Growing setDeviceIDModeToIDFA];
+#define setDeviceIDModeToIDFA setDeviceIDModeToCustomBlock:^NSString*{ return [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString]; }
+// 使用随机UUID，用法：[Growing setDeviceIDModeToRandomUUID];
+#define setDeviceIDModeToRandomUUID setDeviceIDModeToCustomBlock:^NSString*{ return [[NSUUID UUID] UUIDString]; }
+// 使用自定义的ID自 定义ID长度不可大于36 否则会被抛弃 NSUUID的UUIDString长度为36
 + (void)setDeviceIDModeToCustomBlock:(NSString*(^)())customBlock;
 
 // 该函数请在main函数第一行调用 APP启动后 将不允许修改采集模式
@@ -87,8 +91,6 @@ typedef NS_ENUM(NSInteger, GrowingAspectMode)
 + (void)disable;
 // 设置为 NO，可以不采集任何关于 UIWebView / WKWebView 的统计信息
 + (void)enableAllWebViews:(BOOL)enable;
-// 设置为 YES, 将启用 HashTag
-+ (void)enableHybridHashTag:(BOOL)enable;
 // 是否开启了trackingWebView选项
 + (BOOL)isTrackingWebView;
 
@@ -162,10 +164,6 @@ typedef NS_ENUM(NSInteger, GrowingAspectMode)
 // 手动标识该view的取值  比如banner广告条的id 可以放在banner按钮的任意view上
 @property (nonatomic, copy)   NSString* growingAttributesValue;
 
-// 手动标识SDCycleScrollView组件的bannerIds  如若使用,请在创建SDCycleScrollView实例对象后,立即赋值;(如果不进行手动设置,SDK默认会采集banner的imageName或者imageURL)
-@property (nonatomic, strong) NSArray<NSString *>
-                                      * growingSDCycleBannerIds;
-
 // 手动标识该view的附加属性  该值可被子节点继承
 @property (nonatomic, copy)   NSString* growingAttributesInfo;
 
@@ -179,7 +177,7 @@ typedef NS_ENUM(NSInteger, GrowingAspectMode)
 
 
 // 该属性setter方法均使用 objc_setAssociatedObject实现
-// 如果是自定义的UIViewController不要使用重写getter方法来实现,因为SDK在set方法内部有逻辑处理
+// 如果是自定义的UIViewController建议优先使用重写getter方法来实现 以提高性能
 @interface UIViewController(GrowingAttributes)
 
 // 手动标识该vc的附加属性  该值可被子节点继承
