@@ -15,6 +15,15 @@ react-native-growingio 用于RN开发者使用打点的方式采集数据。
 * `react-native link react-native-growingio`
 
 ### 三、配置
+### iOS
+* 如果react-native link失败(成功则忽略此描述),即发现Libraries中没有GrowingIORNPlugin.xcodeproj,则可手动配置;
+a.打开XCode's工程中, 右键点击Libraries文件夹 ➜ Add Files to <...>
+b.去node_modules ➜ react-native-growingio ➜ ios ➜ 选择 GrowingIORNPlugin.xcodeproj
+c.在工程Build Phases ➜ Link Binary With Libraries中添加libGrowingIORNPlugin.a
+* 导入native sdk:去node_modules ➜ react-native-growingio ➜ ios ➜ GrowingIO-iOS-SDK ➜ 将 Growing.h 和 libGrowing.a 添加到您的 iOS 工程中;
+* [添加官网配置](https://docs.growingio.com/SDK/iOS.html), 从步骤三开始,忽略步骤五;
+
+### android
 * 在android project 级别的build.gradle下添加如下依赖: `classpath 'com.growingio.android:vds-gradle-plugin:OP-2.0.0'`
 
 * 在android app module 级别的build.gradle下添加如下代码: `apply plugin: 'com.growingio.android'`
