@@ -40,9 +40,9 @@ c.在工程Build Phases ➜ Link Binary With Libraries中添加libGrowingIORNPlu
 
 | 函数名 | 参数 | 说明|
 |:-----:|-----|:-------:|
-| track|<nobr>(final String eventName, @Nullable final Double number, @Nullable final String strEventJson, final Callback callback)</nobr>|<nobr> 打点函数</nobr>|
-| trackPage | (final String pageName, final String lastPage, final long ptm, Callback callback)| 页面打点 |
-| trackPage | (final String pageName, final long ptm, Callback callback)| 页面打点 |
+| init|<nobr>(final String accountId, @Nullable final String strOptionJson, final Callback callback)</nobr>|<nobr> 打点函数,参数2为json String,key可以为debug,zone</nobr>|
+| track|<nobr>(final String eventName, @Nullable final String number, @Nullable final String strEventJson, final Callback callback)</nobr>|<nobr> 打点函数</nobr>|
+| trackPage | (final String pageName, final String ptm, Callback callback)| 页面打点 |
 | setUserId | (final String newUserId, final Callback callback)| 设置用户id |
 | cleanUserId | (Callback callback)| 清除id |
 | setAppVariable |(final String strVariableJson, Callback callback) | <nobr>第一个参数为 json String </nobr> |
