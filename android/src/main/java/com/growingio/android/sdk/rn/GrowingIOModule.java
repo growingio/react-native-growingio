@@ -9,6 +9,7 @@ import com.facebook.react.bridge.LifecycleEventListener;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.growingio.android.sdk.collection.Configuration;
 import com.growingio.android.sdk.collection.GrowingIO;
 import com.growingio.android.sdk.collection.SessionManager;
 import com.growingio.android.sdk.utils.LogUtil;
@@ -18,6 +19,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.growingio.android.sdk.collection.SessionManager.enterNewPage;
 
 /**
  * author CliffLeopard
@@ -50,22 +53,63 @@ public class GrowingIOModule extends ReactContextBaseJavaModule implements Lifec
 
 
     @ReactMethod
-    public void test(final String eventName) {
-        Toast.makeText(getReactApplicationContext(), eventName, Toast.LENGTH_SHORT).show();
-    }
+    public void init(final String accountId, @Nullable final String strOptionJson, final Callback callback) {
 
+        if (!TextUtils.isEmpty(strOptionJson)) {
+            try {
+                JSONObject options = new JSONObject(strOptionJson);
+                if (options.has("zone")) {
+                    GrowingIO.setZone(options.optString("zone", null));
+                }
+                GrowingIO.getInstance()
+                        .startWithConfiguration(GrowingIO.getDefaultApplication(),
+                                getConfigFromOptions(options)
+                                        .setProjectId(accountId));
+            } catch (JSONException e) {
+                if (callback != null)
+                    callback.invoke("the second parameter must be null ,empty String or String of  JSONObject");
+                LogUtil.d(TAG, "track fail strEventJson not json");
+                return;
+            }
+        } else {
+            GrowingIO.getInstance()
+                    .startWithConfiguration(GrowingIO.getDefaultApplication(),
+                            new Configuration()
+                                    .setProjectId(accountId)
+                                    .useID()
+                                    .setURLScheme("default_url_scheme"));
+        }
+
+        enterNewPage();
+        saveVisit(PAGE_RN_INIT);
+        trackPage(PAGE_RN_INIT, System.currentTimeMillis());
+
+        if (callback != null)
+            callback.invoke(CALLBACK_SUCCESS);
+    }
 
     /**
      * 打点
      *
      * @param eventName
-     * @param number
+     * @param strNumber
      * @param strEventJson 不可为嵌套格式的json
      * @param callback
      */
     @ReactMethod
-    public void track(final String eventName, @Nullable final Double number, @Nullable final String strEventJson, @Nullable final Callback callback) {
-
+    public void track(final String eventName, @Nullable final String strNumber, @Nullable final String strEventJson, @Nullable final Callback callback) {
+        Double number;
+        try {
+            if (TextUtils.isEmpty(strNumber))
+                number = null;
+            else
+                number = Double.valueOf(strNumber);
+        } catch (NumberFormatException e) {
+            if (callback != null)
+                callback.invoke("the second parameter must be null ,empty String or String of  Double");
+            LogUtil.d(TAG, "track fail strEventJson not json");
+            return;
+        }
         JSONObject eventJson;
         if (TextUtils.isEmpty(eventName)) {
             if (callback != null)
@@ -92,7 +136,6 @@ public class GrowingIOModule extends ReactContextBaseJavaModule implements Lifec
 
     }
 
-    @ReactMethod
     public void trackPage(final String pageName, final String lastPage, final long ptm, Callback callback) {
         if (trackPage(pageName, lastPage, ptm)) {
             callback.invoke("the third parameter must be null ,empty String or String of  JSONObject");
@@ -104,8 +147,21 @@ public class GrowingIOModule extends ReactContextBaseJavaModule implements Lifec
     }
 
     @ReactMethod
-    public void trackPage(final String pageName, final long ptm, Callback callback) {
-        trackPage(pageName, null, ptm, callback);
+    public void trackPage(final String pageName, final String strPtm, Callback callback) {
+        if (TextUtils.isEmpty(strPtm)) {
+            if (callback != null)
+                callback.invoke("the second parameter neither be empty nor null");
+            LogUtil.d(TAG, "track fail strEventJson not json");
+            return;
+        }
+        try {
+            Long ptm = Long.valueOf(strPtm);
+            trackPage(pageName, null, ptm.longValue(), callback);
+        } catch (NumberFormatException e) {
+            if (callback != null)
+                callback.invoke("the second parameter must be String of long");
+            LogUtil.d(TAG, "track fail strPtm not String of long");
+        }
     }
 
 
@@ -248,7 +304,7 @@ public class GrowingIOModule extends ReactContextBaseJavaModule implements Lifec
 
     @Override
     public void onHostResume() {
-        SessionManager.enterNewPage();
+        enterNewPage();
         saveVisit(PAGE_RN_INIT);
         trackPage(PAGE_RN_INIT, currentPageName, System.currentTimeMillis());
         GrowingIO.getInstance().saveVisit(PAGE_RN_INIT);
@@ -264,4 +320,30 @@ public class GrowingIOModule extends ReactContextBaseJavaModule implements Lifec
     public void onHostDestroy() {
 
     }
+
+    private Configuration getConfigFromOptions(JSONObject options) {
+        Configuration config = new Configuration();
+        if (options.has("growingio_url_scheme")) {
+            config.setURLScheme(options.optString("growingio_url_scheme", "default_url_scheme"));
+        } else {
+            config.setURLScheme("default_url_scheme");
+        }
+
+        if (options.has("channel")) {
+            config.setChannel(options.optString("channel", ""));
+        }
+
+        if (options.has("useid")) {
+            if (options.optBoolean("useid", true))
+                config.useID();
+        }
+
+        if (options.has("debug")) {
+            config.setDebugMode(options.optBoolean("debug", false));
+        }
+
+        return config;
+    }
+
+
 }
