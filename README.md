@@ -10,7 +10,7 @@ react-native-growingio 用于RN开发者使用打点的方式采集数据。
 
 ### 二、引入
 
-* `npm install --save https://github.com/growingio/react-native-growingio.git`
+* `npm install --save https://github.com/growingio/react-native-growingio.git#iOS_RN_test`
 * `npm install`
 * `react-native link react-native-growingio`
 
