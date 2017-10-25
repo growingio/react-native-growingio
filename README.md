@@ -65,7 +65,7 @@ c.在工程Build Phases ➜ Link Binary With Libraries中添加libGrowingIORNPlu
 * 例如在js中调用打点函数：
 
 	    NativeModules.GrowingIO.track("ggl", 
-	      100.00,
+	      '100.00',
 	      "{\"ke1\": \"heel\",\"ke2\": 100,\"struckt\": {\"kk1\": \"heal\",\"kk2\": \"heal\"}}",
 	      (msg) => {
 	          if(msg == NativeModules.GrowingIO.CALLBACK_SUCCESS)
