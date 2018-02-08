@@ -20,7 +20,22 @@ react-native-growingio 用于RN开发者使用打点的方式采集数据。
 a.打开XCode's工程中, 右键点击Libraries文件夹 ➜ Add Files to <...>
 b.去node_modules ➜ react-native-growingio ➜ ios ➜ 选择 GrowingIORNPlugin.xcodeproj
 c.在工程Build Phases ➜ Link Binary With Libraries中添加libGrowingIORNPlugin.a
-* [添加官网配置](https://docs.growingio.com/SDK/iOS.html), 从步骤三开始,忽略步骤五;
+* 添加初始化函数:
+在 AppDelegate 中引入#import "Growing.h"并添加启动方法
+```
+- (BOOL)application:(UIApplication *)application
+didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+...
+// 启动GrowingIO
+[Growing startWithAccountId:@"您的项目ID"];
+
+// 其他配置
+// 开启Growing调试日志 可以开启日志
+// [Growing setEnableLog:YES];
+}
+```
+
+* [添加官网配置](https://docs.growingio.com/SDK/iOS.html), 从步骤三开始
 
 ### android
 * 在android project 级别的build.gradle下添加如下依赖: `classpath 'com.growingio.android:vds-gradle-plugin:OP-2.0.0'`
@@ -40,14 +55,14 @@ c.在工程Build Phases ➜ Link Binary With Libraries中添加libGrowingIORNPlu
 
 | 函数名 | 参数 | 说明|
 |:-----:|-----|:-------:|
-| init|<nobr>(final String accountId, @Nullable final String strOptionJson, final Callback callback)</nobr>|<nobr> 打点函数,参数2为json String,key可以为debug,zone</nobr>|
-| track|<nobr>(final String eventName, @Nullable final String number, @Nullable final String strEventJson, final Callback callback)</nobr>|<nobr> 打点函数</nobr>|
-| trackPage | (final String pageName, final String ptm, Callback callback)| 页面打点 |
-| setUserId | (final String newUserId, final Callback callback)| 设置用户id |
-| cleanUserId | (Callback callback)| 清除id |
-| setAppVariable |(final String strVariableJson, Callback callback) | <nobr>第一个参数为 json String </nobr> |
-| setEvarVariable | (final String strVariableJson, Callback callback) |  参数1为json String   |
-| setPeopleVariable | (final String strVariableJson, Callback callback)| 参数1为json String |
+| track|<nobr>(String eventId, Object eventLevelVariable(optional))</nobr>|<nobr> 打点函数</nobr>|
+| trackWithNumber|<nobr>(String eventId, Number number, Object eventLevelVariable(optional))</nobr>|<nobr> 打点函数</nobr>|
+| page | (String page)| 页面打点 |
+| serUserId | (String userId)| 设置用户id |
+| cleanUserId | | 清除id |
+| setPageVariable |(String page, Object pageLevelVariables) | <nobr>页面变量 </nobr> |
+| setEvar | (Object conversionVariables) |   转化变量  |
+| setPeopleVariable | (Object peopleVariables)| 用户变量 |
             
 ### 五、JS中调用方式：
 * 在定义Component之前引入  
@@ -56,26 +71,12 @@ c.在工程Build Phases ➜ Link Binary With Libraries中添加libGrowingIORNPlu
 		  NativeModules
 		} from 'react-native';
 		
-* 之后就可以使用GrowingIO的方法,所有方法的最后一个参数为一个fucntion,funtion为单参数切类型为String的回掉函数。当参数为 GrowingIO.CALLBACK_SUCCESS 时表示调用成功，否则为错误信息。
+* 之后就可以使用GrowingIO的方法
 
-			NativeModules.GrowingIO.track 
-			....
-	
 
 * 例如在js中调用打点函数：
 
-	    NativeModules.GrowingIO.track("ggl", 
-	      '100.00',
-	      "{\"ke1\": \"heel\",\"ke2\": 100,\"struckt\": {\"kk1\": \"heal\",\"kk2\": \"heal\"}}",
-	      (msg) => {
-	          if(msg == NativeModules.GrowingIO.CALLBACK_SUCCESS)
-	          {
-	            Alert.alert('SUCCESS');
-	          }else{
-	            Alert.alert(msg);
-	          }
-	        }
-	      );
+NativeModules.GrowingIO.track("ggl", {"key1":"100"});
 	      
 ### Tips
 
