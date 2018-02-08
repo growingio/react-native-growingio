@@ -22,18 +22,18 @@ b.去node_modules ➜ react-native-growingio ➜ ios ➜ 选择 GrowingIORNPlugi
 c.在工程Build Phases ➜ Link Binary With Libraries中添加libGrowingIORNPlugin.a
 * 添加初始化函数:
 在 AppDelegate 中引入#import "Growing.h"并添加启动方法
-```
-- (BOOL)application:(UIApplication *)application
-didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-...
-// 启动GrowingIO
-[Growing startWithAccountId:@"您的项目ID"];
 
-// 其他配置
-// 开启Growing调试日志 可以开启日志
-// [Growing setEnableLog:YES];
-}
-```
+        - (BOOL)application:(UIApplication *)application
+        didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+            ...
+            // 启动GrowingIO
+            [Growing startWithAccountId:@"您的项目ID"];
+
+            // 其他配置
+            // 开启Growing调试日志 可以开启日志
+            // [Growing setEnableLog:YES];
+        }
+
 
 * [添加官网配置](https://docs.growingio.com/SDK/iOS.html), 从步骤三开始
 
@@ -76,7 +76,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
 * 例如在js中调用打点函数：
 
-NativeModules.GrowingIO.track("ggl", {"key1":"100"});
+          NativeModules.GrowingIO.track("ggl", {"key1":"100"});
 	      
 ### Tips
 
