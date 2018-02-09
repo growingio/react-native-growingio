@@ -1,4 +1,4 @@
-package com.growingio.android.sdk.rn;
+package com.growingio.android.rn;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;
@@ -30,7 +30,6 @@ public class GrowingRnPackage implements ReactPackage {
         return modules;
     }
 
-    @Override
     public List<Class<? extends JavaScriptModule>> createJSModules() {
         return Collections.emptyList();
     }
