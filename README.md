@@ -58,8 +58,8 @@ c.在工程Build Phases ➜ Link Binary With Libraries中添加libGrowingIORNPlu
 | track|<nobr>(String eventId, Object eventLevelVariable(optional))</nobr>|<nobr> 打点函数</nobr>|
 | trackWithNumber|<nobr>(String eventId, Number number, Object eventLevelVariable(optional))</nobr>|<nobr> 打点函数</nobr>|
 | page | (String page)| 页面打点 |
-| serUserId | (String userId)| 设置用户id |
-| cleanUserId | | 清除id |
+| setUserId | (String userId)| 设置用户id |
+| clearUserId | | 清除id |
 | setPageVariable |(String page, Object pageLevelVariables) | <nobr>页面变量 </nobr> |
 | setEvar | (Object conversionVariables) |   转化变量  |
 | setPeopleVariable | (Object peopleVariables)| 用户变量 |
