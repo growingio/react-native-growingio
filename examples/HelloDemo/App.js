@@ -24,22 +24,49 @@ import {
 } from 'react-native';
 
 var MOCKED_MOVIES_DATA = [
-  {title: '标题', year: '2015', posters: {thumbnail: 'http://i.imgur.com/UePbdph.jpg'}},
+  {title: '标题', year: '2015'},
 ];
-const onButtonPress = () => {
+
+var trackObject = {title: '标题1', year: '201523'};
+const track = () => {
     // Alert.alert('Button has been pressed!');
-    NativeModules.GrowingIO.track("ggl", 
-      100.00,
-      "{\"ke1\": \"heel\",\"ke2\": 100}",
-      (msg) => {
-          if(msg == NativeModules.GrowingIO.CALLBACK_SUCCESS)
-          {
-            Alert.alert('SUCCESS');
-          }else{
-            Alert.alert(msg);
-          }
-        }
-      );
+    NativeModules.GrowingIO.track("ggl", trackObject)
+};
+
+const trackWithNumber = () => {
+    // Alert.alert('Button has been pressed!');
+    NativeModules.GrowingIO.trackWithNumber("trackWithNumber", 10.12,trackObject)
+};
+
+
+const page = () => {
+    // Alert.alert('Button has been pressed!');
+    NativeModules.GrowingIO.page("GGLPage")
+};
+
+const setPageVariable = () => {
+    // Alert.alert('Button has been pressed!');
+    NativeModules.GrowingIO.setPageVariable("GGLPage",trackObject)
+};
+
+const setEvar = () => {
+    // Alert.alert('Button has been pressed!');
+    NativeModules.GrowingIO.setEvar(trackObject)
+};
+
+const setPeopleVariable = () => {
+    // Alert.alert('Button has been pressed!');
+    NativeModules.GrowingIO.setPeopleVariable(trackObject)
+};
+
+const serUserId = () => {
+    // Alert.alert('Button has been pressed!');
+    NativeModules.GrowingIO.serUserId("ggl")
+};
+
+const clearUserId = () => {
+    // Alert.alert('Button has been pressed!');
+    NativeModules.GrowingIO.clearUserId()
 };
 
 export default class GIORNDemo extends Component {
@@ -48,55 +75,55 @@ export default class GIORNDemo extends Component {
     this.state = {text: ''};
   }
   render() {
-    let pic = {
-      uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
-    };
-
     return (
       <View style={styles.container}>
-        <Image source={{uri: 'asset:/lyasset.jpg'}} style={{width: 200, height: 110}} />
-        <Image 
-          source={require('./img/ipic.png')} style={{width: 193, height: 110}} />
-
-        <TextInput
-          style={{width: 200,height: 40}}
-          placeholder="Type here to translate!"
-          growingParams = {{"track":"true"}}
-          onChangeText={(text) => this.setState({text})}
-        />
-
-        <Text style={{padding: 10, fontSize: 42}}>
-          {this.state.text.split(' ').map((word) => word && '🍕').join(' ')}
+        <Text 
+          onPress={track}
+          style={styles.welcome}>
+          Track
         </Text>
 
         <Text 
-          onPress={onButtonPress}
+          onPress={trackWithNumber}
           style={styles.welcome}>
-          下午好：）
+          trackWithNumber
         </Text>
 
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
+        <Text 
+          onPress={setEvar}
+          style={styles.welcome}>
+          setEvar
         </Text>
 
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
+        <Text 
+          onPress={setPeopleVariable}
+          style={styles.welcome}>
+          setPeopleVariable
         </Text>
 
-        <Button
-          onPress={onButtonPress}
-          title="Press Me"
-          color="#841584"
-          accessibilityLabel="See an informative alert"
-        />
+        <Text 
+          onPress={page}
+          style={styles.welcome}>
+          Page
+        </Text>
 
-      <TouchableOpacity 
-            onPress={onButtonPress}
-            disabled={this.state.text.replace(/[ ]/g, "").length < 10}>
-            <Text style={styles.instructions}>去登录</Text>
-      </TouchableOpacity>
+        <Text 
+          onPress={setPageVariable}
+          style={styles.welcome}>
+          setPageVariable
+        </Text>
 
+        <Text 
+          onPress={serUserId}
+          style={styles.welcome}>
+          serUserId
+        </Text>
+
+        <Text 
+          onPress={clearUserId}
+          style={styles.welcome}>
+          clearUserId
+        </Text>
       </View>
     );
   }
