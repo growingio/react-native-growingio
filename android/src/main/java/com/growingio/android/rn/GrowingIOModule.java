@@ -90,7 +90,7 @@ public class GrowingIOModule extends ReactContextBaseJavaModule implements Lifec
 
     @ReactMethod
     @Override
-    public void serUserId(String userId) {
+    public void setUserId(String userId) {
         GrowingIO.getInstance().setUserId(userId+System.currentTimeMillis());
     }
 

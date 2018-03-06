@@ -61,7 +61,7 @@ const setPeopleVariable = () => {
 
 const serUserId = () => {
     // Alert.alert('Button has been pressed!');
-    NativeModules.GrowingIO.serUserId("ggl")
+    NativeModules.GrowingIO.setUserId("ggl")
 };
 
 const clearUserId = () => {
