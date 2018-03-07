@@ -38,17 +38,15 @@ c.在工程Build Phases ➜ Link Binary With Libraries中添加libGrowingIORNPlu
 * [添加官网配置](https://docs.growingio.com/SDK/iOS.html), 从步骤三开始
 
 ### android
-* 在android project 级别的build.gradle下添加如下依赖: `classpath 'com.growingio.android:vds-gradle-plugin:OP-2.0.0'`
-
-* 在android app module 级别的build.gradle下添加如下代码: `apply plugin: 'com.growingio.android'`
-			    
+		    
 * 在Application中的onCreate方法中初始化：
 
         GrowingIO.startWithConfiguration(this, new Configuration()
                 .useID()
                 .trackAllFragments()
                 .setChannel("**应用商店"));
-* [添加官网配置](https://www.growingio.com)
+                
+*  AndroidManifest.xml以及module级别build.gradle中android defaultConfig 中添加的属性，请见官网配置。 [添加官网配置](https://www.growingio.com)
     
 ### 四、方法说明
 
