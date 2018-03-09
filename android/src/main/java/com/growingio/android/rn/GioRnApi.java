@@ -21,7 +21,7 @@ public interface GioRnApi {
 
     void setPeopleVariable(ReadableMap peopleVariables);
 
-    void serUserId(String userId);
+    void setUserId(String userId);
 
     void clearUserId();
 }
