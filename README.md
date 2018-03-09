@@ -6,7 +6,7 @@
 ___
 
 ### 一、说明
-react-native-growingio 用于RN开发者使用打点的方式采集数据。
+react-native-growingio 用于RN开发者手动发送数据。
 
 ### 二、引入
 
@@ -23,82 +23,83 @@ c.在工程Build Phases ➜ Link Binary With Libraries中添加libGrowingIORNPlu
 * 添加初始化函数:
 在 AppDelegate 中引入#import "Growing.h"并添加启动方法
 
-        - (BOOL)application:(UIApplication *)application
-        didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-            ...
-            // 启动GrowingIO
-            [Growing startWithAccountId:@"您的项目ID"];
+- (BOOL)application:(UIApplication *)application
+didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+...
+// 启动GrowingIO
+[Growing startWithAccountId:@"项目ID"];
 
-            // 其他配置
-            // 开启Growing调试日志 可以开启日志
-            // [Growing setEnableLog:YES];
-        }
+// 其他配置
+// 开启Growing调试日志 可以开启日志
+// [Growing setEnableLog:YES];
+}
 
 
-* [添加官网配置](https://docs.growingio.com/SDK/iOS.html), 从步骤三开始
+* [添加官网配置](https://docs.growingio.com/sdk-20/sdk-20-api-wen-dang/ios-sdk-21-an-zhuang.html), 从步骤三开始
 
 ### android
-		    
+
 * 在Application中的onCreate方法中初始化：
 
-        GrowingIO.startWithConfiguration(this, new Configuration()
-                .useID()
-                .trackAllFragments()
-                .setChannel("**应用商店"));
-                
-*  AndroidManifest.xml以及module级别build.gradle中android defaultConfig 中添加的属性，请见官网配置。 [添加官网配置](https://www.growingio.com)
-    
+GrowingIO.startWithConfiguration(this, new Configuration()
+.useID()
+.trackAllFragments()
+.setChannel("**应用商店"));
+
+*  AndroidManifest.xml以及module级别build.gradle中android defaultConfig 中添加的属性，请见官网配置。 [添加官网配置](https://docs.growingio.com/sdk-20/sdk-20-api-wen-dang/android-sdk-21-an-zhuang.html)
+
 ### 四、方法说明
 
 
-| 函数名 | 参数 | 说明|
+| 方法名 | 参数 | 说明|
 |:-----:|-----|:-------:|
-| track|<nobr>(String eventId, Object eventLevelVariable(optional))</nobr>|<nobr> 打点函数</nobr>|
-| trackWithNumber|<nobr>(String eventId, Number number, Object eventLevelVariable(optional))</nobr>|<nobr> 打点函数</nobr>|
-| page | (String page)| 页面打点 |
-| setUserId | (String userId)| 设置用户id |
-| clearUserId | | 清除id |
-| setPageVariable |(String page, Object pageLevelVariables) | <nobr>页面变量 </nobr> |
-| setEvar | (Object conversionVariables) |   转化变量  |
-| setPeopleVariable | (Object peopleVariables)| 用户变量 |
-            
-### 五、JS中调用方式：
-* 在定义Component之前引入  
+| track|<nobr>(String eventId, Object eventLevelVariable(optional))</nobr>|<nobr> 自定义事件（计数器类型）</nobr>|
+| trackWithNumber|<nobr>(String eventId, Number number, Object eventLevelVariable(optional))</nobr>|<nobr> 自定义事件（数值类型）</nobr>|
+| page | (String page)| 页面浏览事件 |
+| setUserId | (String userId)| 设置登录用户ID |
+| clearUserId | | 清除登录用户ID |
+| setPageVariable |(String page, Object pageLevelVariables) | <nobr> 设置页面级变量 </nobr> |
+| setEvar | (Object conversionVariables) |   设置转化变量  |
+| setPeopleVariable | (Object peopleVariables)| 设置用户变量 |
 
-		import {
-		  NativeModules
-		} from 'react-native';
-		
+### 五、JS中调用方式：
+* 在定义Component之前引入
+
+import {
+NativeModules
+} from 'react-native';
+
 * 之后就可以使用GrowingIO的方法
 
 
-* 例如在js中调用打点函数：
+* 例如在js中调用自定义事件方法：
 
-          NativeModules.GrowingIO.track("ggl", {"key1":"100"});
-	      
+NativeModules.GrowingIO.track("registerSuccess", {"gender":"male"});
+
 ### Tips
 
-* 由于最新的ReactNative 打包gradlew存在bug，所以android在打debug包和releae包时要进行如下操作：   
+* 由于最新的ReactNative 打包gradlew存在bug，所以android在打debug包和releae包时要进行如下操作：
 
 
 1. 在工程目录下
 
-        mkdir Android/app/assets
-       
+mkdir Android/app/assets
+
 2. 在app build.gradle  android中添加：
- 
- 
-		sourceSets {
-	        main {
-	            assets.srcDirs = ['assets']
-	        }
-	    }
-	    
+
+
+sourceSets {
+main {
+assets.srcDirs = ['assets']
+}
+}
+
 3. 在工程目录下：
 
- 		react-native bundle --platform android --dev false --entry-file App.js --bundle-output android/app/assets/index.android.bundle  --assets-dest android/app/src/main/res/ 
- 		
- 		
+react-native bundle --platform android --dev false --entry-file App.js --bundle-output android/app/assets/index.android.bundle  --assets-dest android/app/src/main/res/
+
+
 4. demo 可见 examples/HelloDemo
 
-	      
+
+
