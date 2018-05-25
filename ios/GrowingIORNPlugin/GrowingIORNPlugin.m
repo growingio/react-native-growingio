@@ -59,14 +59,14 @@ RCT_EXPORT_METHOD(setPeopleVariable:(NSDictionary *)peopleVariables)
 RCT_EXPORT_METHOD(setUserId:(NSString *)userId)
 {
   [self dispatchInMainThread: ^{
-    [Growing setPluginUserId:userId];
+    [Growing setUserId:userId];
   }];
 }
 
 RCT_EXPORT_METHOD(clearUserId)
 {
   [self dispatchInMainThread: ^{
-    [Growing clearPluginUserId];
+    [Growing clearUserId];
   }];
 }
 

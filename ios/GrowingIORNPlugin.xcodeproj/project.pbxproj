@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1855EAF120B7B82E00DB2224 /* GrowingCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1855EAED20B7B82D00DB2224 /* GrowingCoreKit.framework */; };
+		18DE2FE920B7C18C0057CEBE /* Growing.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1855EAEE20B7B82D00DB2224 /* Growing.h */; };
 		18E0BD511F988C9400049DE1 /* GrowingIORNPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E0BD501F988C9400049DE1 /* GrowingIORNPlugin.m */; };
 		18E0BD521F988C9400049DE1 /* GrowingIORNPlugin.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 18E0BD4F1F988C9400049DE1 /* GrowingIORNPlugin.h */; };
 /* End PBXBuildFile section */
@@ -19,6 +20,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				18DE2FE920B7C18C0057CEBE /* Growing.h in CopyFiles */,
 				18E0BD521F988C9400049DE1 /* GrowingIORNPlugin.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
