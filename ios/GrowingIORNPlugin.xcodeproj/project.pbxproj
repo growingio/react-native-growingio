@@ -259,6 +259,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GrowingIO-iOS-CoreKit",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/GrowingIO-iOS-CoreKit",
+					"$(inherited)",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -279,6 +283,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GrowingIO-iOS-CoreKit",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/GrowingIO-iOS-CoreKit",
+					"$(inherited)",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
