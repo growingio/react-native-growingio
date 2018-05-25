@@ -13,15 +13,21 @@ react-native-growingio 用于RN开发者手动发送数据。
 * `npm install --save https://github.com/growingio/react-native-growingio.git`
 * `npm install`
 * `react-native link react-native-growingio`
+#### iOS
+* 使用CocoaPods安装GrowingCoreKit ( pod 'GrowingCoreKit', '~> 2.4.0' in your Podfile and run pod install)
 
 ### 三、配置
 ### iOS
 * 如果`react-native link react-native-growingio`失败(成功则忽略此步骤),即发现Libraries中没有GrowingIORNPlugin.xcodeproj,则可手动配置;
+
 a.打开XCode's工程中, 右键点击Libraries文件夹 ➜ Add Files to <...>
+
 b.去node_modules ➜ react-native-growingio ➜ ios ➜ 选择 GrowingIORNPlugin.xcodeproj
+
 c.在工程Build Phases ➜ Link Binary With Libraries中添加libGrowingIORNPlugin.a
+
 * 添加初始化函数:
-在 AppDelegate 中引入#import <GrowingIORNPlugin/Growing.h>并添加启动方法
+在 AppDelegate 中引入#import "Growing.h"并添加启动方法
 
         - (BOOL)application:(UIApplication *)application
         didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -35,7 +41,7 @@ c.在工程Build Phases ➜ Link Binary With Libraries中添加libGrowingIORNPlu
         }
 
 
-* [添加官网配置](https://docs.growingio.com/sdk-20/sdk-20-api-wen-dang/ios-sdk-21-an-zhuang.html), 从步骤三开始
+* [添加官网配置](https://docs.growingio.com/sdk-20/sdk-20-api-wen-dang/ios-sdk-21-an-zhuang.html), 需要重构后的文档
 
 ### android
 
