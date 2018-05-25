@@ -21,7 +21,7 @@ a.打开XCode's工程中, 右键点击Libraries文件夹 ➜ Add Files to <...>
 b.去node_modules ➜ react-native-growingio ➜ ios ➜ 选择 GrowingIORNPlugin.xcodeproj
 c.在工程Build Phases ➜ Link Binary With Libraries中添加libGrowingIORNPlugin.a
 * 添加初始化函数:
-在 AppDelegate 中引入#import "Growing.h"并添加启动方法
+在 AppDelegate 中引入#import <GrowingIORNPlugin/Growing.h>并添加启动方法
 
         - (BOOL)application:(UIApplication *)application
         didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -55,10 +55,8 @@ c.在工程Build Phases ➜ Link Binary With Libraries中添加libGrowingIORNPlu
 |:-----:|-----|:-------:|
 | track|<nobr>(String eventId, Object eventLevelVariable(optional))</nobr>|<nobr> 自定义事件（计数器类型）</nobr>|
 | trackWithNumber|<nobr>(String eventId, Number number, Object eventLevelVariable(optional))</nobr>|<nobr> 自定义事件（数值类型）</nobr>|
-| page | (String page)| 页面浏览事件 |
 | setUserId | (String userId)| 设置登录用户ID |
 | clearUserId | | 清除登录用户ID |
-| setPageVariable |(String page, Object pageLevelVariables) | <nobr> 设置页面级变量 </nobr> |
 | setEvar | (Object conversionVariables) |   设置转化变量  |
 | setPeopleVariable | (Object peopleVariables)| 设置用户变量 |
 

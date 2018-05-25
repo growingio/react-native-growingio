@@ -42,22 +42,6 @@ RCT_EXPORT_METHOD(trackWithNumber:(NSString *)eventId number:(double)number even
     }];
 }
 
-RCT_EXPORT_METHOD(page:(NSString *)page)
-{
-    NSString *pageTime = GROWGetTimestamp();
-    [self dispatchInMainThread:^{
-        [Growing trackPageWithPageName:page pageTime:pageTime];
-    }];
-}
-
-RCT_EXPORT_METHOD(setPageVariable:(NSString *)page pageLevelVariables:(NSDictionary *)pageLevelVariables)
-{
-    [self dispatchInMainThread:^{
-        [Growing setPageVariable:pageLevelVariables
-                          toPage:page];
-    }];
-}
-
 RCT_EXPORT_METHOD(setEvar:(NSDictionary *)conversionVariables)
 {
     [self dispatchInMainThread:^{

@@ -38,17 +38,6 @@ const trackWithNumber = () => {
     NativeModules.GrowingIO.trackWithNumber("trackWithNumber", 10.12,trackObject)
 };
 
-
-const page = () => {
-    // Alert.alert('Button has been pressed!');
-    NativeModules.GrowingIO.page("GGLPage")
-};
-
-const setPageVariable = () => {
-    // Alert.alert('Button has been pressed!');
-    NativeModules.GrowingIO.setPageVariable("GGLPage",trackObject)
-};
-
 const setEvar = () => {
     // Alert.alert('Button has been pressed!');
     NativeModules.GrowingIO.setEvar(trackObject)

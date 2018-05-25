@@ -1,0 +1,6 @@
+framework module GrowingCoreKit {
+  umbrella header "GrowingCoreKit.h"
+
+  export *
+  module * { export * }
+}
