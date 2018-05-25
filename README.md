@@ -19,11 +19,8 @@ react-native-growingio 用于RN开发者手动发送数据。
 ### 三、配置
 ### iOS
 * 如果`react-native link react-native-growingio`失败(成功则忽略此步骤),即发现Libraries中没有GrowingIORNPlugin.xcodeproj,则可手动配置;
-
 a.打开XCode's工程中, 右键点击Libraries文件夹 ➜ Add Files to <...>
-
 b.去node_modules ➜ react-native-growingio ➜ ios ➜ 选择 GrowingIORNPlugin.xcodeproj
-
 c.在工程Build Phases ➜ Link Binary With Libraries中添加libGrowingIORNPlugin.a
 
 * 添加初始化函数:
