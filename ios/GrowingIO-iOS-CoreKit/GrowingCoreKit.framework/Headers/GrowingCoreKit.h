@@ -85,6 +85,14 @@ typedef NS_ENUM(NSInteger, GrowingAspectMode)
  */
 + (void)registerUniversallinkHandler:(void(^)(NSDictionary *params, NSError *error))handler;
 
+/**
+ deeplink广告落地页参数回调设置
+
+ @param handler: deeplink广告落地页参数回调, params 为解析正确时反回调的参数, error 为解析错误时返回的参数.
+                 handler 默认为空, 客户需要手动设置.
+ */
++ (void)registerDeeplinkHandler:(void(^)(NSDictionary *params, NSError *error))handler;
+
 // 该函数请在main函数第一行调用 APP启动后 将不允许修改采集模式
 + (void)setAspectMode:(GrowingAspectMode)aspectMode;
 + (GrowingAspectMode)getAspectMode;
@@ -94,6 +102,15 @@ typedef NS_ENUM(NSInteger, GrowingAspectMode)
 
 // 全局不发送统计信息
 + (void)disable;
+// 设置为 NO，可以不采集任何关于 UIWebView / WKWebView 的统计信息
++ (void)enableAllWebViews:(BOOL)enable;
+// 设置为 YES, 将启用 HashTag
++ (void)enableHybridHashTag:(BOOL)enable;
+// 是否开启了trackingWebView选项
++ (BOOL)isTrackingWebView;
+
+// 设置是否发送元素的展现次数（浏览量、曝光量）
++ (void)setImp:(BOOL)imp;
 
 // 设置发送数据的时间间隔（单位为秒）
 + (void)setFlushInterval:(NSTimeInterval)interval;
