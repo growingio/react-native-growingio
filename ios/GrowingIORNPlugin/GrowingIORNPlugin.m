@@ -70,6 +70,30 @@ RCT_EXPORT_METHOD(clearUserId)
   }];
 }
 
+RCT_EXPORT_METHOD(onPagePrepare:(NSString *)page)
+{
+    Class class = NSClassFromString(@"GrowingReactNativeTrack");
+    if (!class) {
+        return;
+    }
+    [self dispatchInMainThread: ^{
+        [class performSelector:@selector(onPagePrepare:) withObject:page];
+        
+    }];
+}
+
+RCT_EXPORT_METHOD(onPageShow:(NSString *)page)
+{
+    Class class = NSClassFromString(@"GrowingReactNativeTrack");
+    if (!class) {
+        return;
+    }
+    [self dispatchInMainThread: ^{
+        [class performSelector:@selector(onPageShow:) withObject:page];
+
+    }];
+}
+
 - (void)dispatchInMainThread:(void (^)(void))block
 {
   if ([NSThread isMainThread]) {
