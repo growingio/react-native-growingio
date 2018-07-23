@@ -70,6 +70,13 @@ RCT_EXPORT_METHOD(clearUserId)
   }];
 }
 
+RCT_EXPORT_METHOD(setVisitor:(NSDictionary *)variable)
+{
+    [self dispatchInMainThread:^{
+        [Growing setVisitor:variable];
+    }];
+}
+
 RCT_EXPORT_METHOD(onPagePrepare:(NSString *)page)
 {
     Class class = NSClassFromString(@"GrowingReactNativeTrack");
