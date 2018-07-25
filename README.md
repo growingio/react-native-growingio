@@ -64,6 +64,7 @@ c.在工程Build Phases ➜ Link Binary With Libraries中添加libGrowingIORNPlu
 | clearUserId | | 清除登录用户ID |
 | setEvar | (Object conversionVariables) |   设置转化变量  |
 | setPeopleVariable | (Object peopleVariables)| 设置用户变量 |
+| setVisitor | (Object visitor)| 设置访问用户变量 |
 
 ### 五、JS中调用方式：
 
