@@ -16,6 +16,9 @@ import the headers individually."
     #if __has_include(<GrowingAutoTrackKit/GrowingAutoTrackKit.h>)
     #import <GrowingAutoTrackKit/GrowingAutoTrackKit.h>
     #endif
+    #if __has_include(<GrowingReactNativeKit/GrowingReactNativeKit.h>)
+    #import <GrowingReactNativeKit/GrowingReactNativeKit.h>
+    #endif
 
 
 #endif  // defined(__has_include)

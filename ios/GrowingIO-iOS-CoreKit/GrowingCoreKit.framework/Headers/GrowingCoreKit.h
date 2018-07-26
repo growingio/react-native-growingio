@@ -77,6 +77,13 @@ typedef NS_ENUM(NSInteger, GrowingAspectMode)
                  handler 默认为空, 客户需要手动设置.
  */
 + (void)registerDeeplinkHandler:(void(^)(NSDictionary *params, NSError *error))handler;
+/**
+ Universallink广告落地页参数回调设置
+ 
+ @param handler: Universallink广告落地页参数回调, params 为解析正确时反回调的参数, error 为解析错误时返回的参数.
+ handler 默认为空, 客户需要手动设置.
+ */
++ (void)registerUniversallinkHandler:(void(^)(NSDictionary *params, NSError *error))handler;
 
 // 该函数请在main函数第一行调用 APP启动后 将不允许修改采集模式
 + (void)setAspectMode:(GrowingAspectMode)aspectMode;
@@ -118,7 +125,6 @@ typedef NS_ENUM(NSInteger, GrowingAspectMode)
 + (void)disableDataCollect;
 // 设置 GDPR 失效
 + (void)enableDataCollect;
-
 // 获取当前设备id
 + (NSString *)getDeviceId;
 // 获取当前uid
@@ -212,5 +218,12 @@ typedef NS_ENUM(NSInteger, GrowingAspectMode)
  @param variable : 事件变量, 变量不能为nil
  */
 + (void)track:(NSString *)eventId withVariable:(NSDictionary<NSString *, id> *)variable;
+
+/**
+ 访问用户变量
+ 
+ @param variable : 访问用户变量, 不能为nil
+ */
++ (void)setVisitor:(NSDictionary<NSString *, NSObject *> *)variable;
 
 @end
