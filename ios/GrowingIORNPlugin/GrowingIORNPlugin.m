@@ -31,14 +31,22 @@ RCT_EXPORT_MODULE(GrowingIO);
 RCT_EXPORT_METHOD(track:(NSString *)eventId eventLevelVariable:(NSDictionary *)eventLevelVariable)
 {
     [self dispatchInMainThread:^{
-        [Growing track:eventId withVariable:eventLevelVariable];
+        if (eventLevelVariable.count != 0) {
+            [Growing track:eventId withVariable:eventLevelVariable];
+        } else {
+            [Growing track:eventId];
+        }
     }];
 }
 
 RCT_EXPORT_METHOD(trackWithNumber:(NSString *)eventId number:(double)number eventLevelVariable:(NSDictionary *)eventLevelVariable)
 {
     [self dispatchInMainThread:^{
-        [Growing track:eventId withNumber:[NSNumber numberWithDouble:number] andVariable:eventLevelVariable];
+        if (eventLevelVariable.count != 0) {
+            [Growing track:eventId withNumber:[NSNumber numberWithDouble:number] andVariable:eventLevelVariable];
+        } else {
+            [Growing track:eventId withNumber:[NSNumber numberWithDouble:number]];
+        }
     }];
 }
 
