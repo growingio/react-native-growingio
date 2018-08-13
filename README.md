@@ -10,7 +10,7 @@ react-native-growingio 用于RN开发者手动发送数据。
 
 ### 二、引入
 
-* `npm install --save https://github.com/growingio/react-native-growingio.git`
+* `npm install --save https://github.com/growingio/react-native-growingio.git#develop`
 * `npm install`
 * `react-native link react-native-growingio`
 #### iOS
