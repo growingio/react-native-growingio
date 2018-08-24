@@ -88,7 +88,9 @@ RCT_EXPORT_METHOD(setVisitor:(NSDictionary *)variable)
 RCT_EXPORT_METHOD(onPagePrepare:(NSString *)page)
 {
     Class class = NSClassFromString(@"GrowingReactNativeTrack");
-    if (!class) {
+    BOOL responds = [class respondsToSelector:@selector(onPagePrepare:)];
+    
+    if (!class || !responds) {
         return;
     }
     [self dispatchInMainThread: ^{
@@ -100,7 +102,9 @@ RCT_EXPORT_METHOD(onPagePrepare:(NSString *)page)
 RCT_EXPORT_METHOD(onPageShow:(NSString *)page)
 {
     Class class = NSClassFromString(@"GrowingReactNativeTrack");
-    if (!class) {
+    BOOL responds = [class respondsToSelector:@selector(onPageShow:)];
+    
+    if (!class || !responds) {
         return;
     }
     [self dispatchInMainThread: ^{
@@ -108,6 +112,21 @@ RCT_EXPORT_METHOD(onPageShow:(NSString *)page)
 
     }];
 }
+
+RCT_EXPORT_METHOD(setPageVariable:(NSString *)page pageLevelVariables:(NSDictionary *)pageLevelVariables)
+{
+    Class class = NSClassFromString(@"GrowingReactNativeTrack");
+    BOOL responds = [class respondsToSelector:@selector(setPageVariable:pageLevelVariables:)];
+    
+    if (!class || !responds) {
+        return;
+    }
+    
+    [self dispatchInMainThread: ^{
+        [class performSelector:@selector(setPageVariable:pageLevelVariables:) withObject:page withObject:pageLevelVariables];
+    }];
+}
+
 
 - (void)dispatchInMainThread:(void (^)(void))block
 {
