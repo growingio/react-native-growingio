@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		186BD36621341899005EBE4E /* GrowingIORNAutoTrackPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BD36521341899005EBE4E /* GrowingIORNAutoTrackPlugin.m */; };
 		18E0BD511F988C9400049DE1 /* GrowingIORNPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E0BD501F988C9400049DE1 /* GrowingIORNPlugin.m */; };
 		18E0BD521F988C9400049DE1 /* GrowingIORNPlugin.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 18E0BD4F1F988C9400049DE1 /* GrowingIORNPlugin.h */; };
 /* End PBXBuildFile section */
@@ -25,6 +26,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		186BD36421341899005EBE4E /* GrowingIORNAutoTrackPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GrowingIORNAutoTrackPlugin.h; sourceTree = "<group>"; };
+		186BD36521341899005EBE4E /* GrowingIORNAutoTrackPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GrowingIORNAutoTrackPlugin.m; sourceTree = "<group>"; };
 		18E0BD4C1F988C9400049DE1 /* libGrowingIORNPlugin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGrowingIORNPlugin.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		18E0BD4F1F988C9400049DE1 /* GrowingIORNPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GrowingIORNPlugin.h; sourceTree = "<group>"; };
 		18E0BD501F988C9400049DE1 /* GrowingIORNPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GrowingIORNPlugin.m; sourceTree = "<group>"; };
@@ -62,6 +65,8 @@
 			children = (
 				18E0BD4F1F988C9400049DE1 /* GrowingIORNPlugin.h */,
 				18E0BD501F988C9400049DE1 /* GrowingIORNPlugin.m */,
+				186BD36421341899005EBE4E /* GrowingIORNAutoTrackPlugin.h */,
+				186BD36521341899005EBE4E /* GrowingIORNAutoTrackPlugin.m */,
 			);
 			path = GrowingIORNPlugin;
 			sourceTree = "<group>";
@@ -124,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18E0BD511F988C9400049DE1 /* GrowingIORNPlugin.m in Sources */,
+				186BD36621341899005EBE4E /* GrowingIORNAutoTrackPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
