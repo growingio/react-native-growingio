@@ -42,7 +42,7 @@ RCT_EXPORT_METHOD(onPageShow:(NSString *)page)
     }];
 }
 
-RCT_EXPORT_METHOD(prepareView:(NSNumber *)tag isClickable:(BOOL)isClickable parameters:(NSDictionary *)parameters)
+RCT_EXPORT_METHOD(prepareView:(nonnull NSNumber *)tag isClickable:(BOOL)isClickable parameters:(NSDictionary *)parameters)
 {
     Class class = NSClassFromString(GrowingReactNativeAutoTrack);
     BOOL responds = [class respondsToSelector:@selector(prepareView:parameters:)];
@@ -59,7 +59,7 @@ RCT_EXPORT_METHOD(prepareView:(NSNumber *)tag isClickable:(BOOL)isClickable para
     }];
 }
 
-RCT_EXPORT_METHOD(onClick:(NSNumber *)tag)
+RCT_EXPORT_METHOD(onClick:(nonnull NSNumber *)tag)
 {
     Class class = NSClassFromString(GrowingReactNativeAutoTrack);
     BOOL responds = [class respondsToSelector:@selector(onClick:)];
