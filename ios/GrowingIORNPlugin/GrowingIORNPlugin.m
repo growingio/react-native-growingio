@@ -30,59 +30,45 @@ RCT_EXPORT_MODULE(GrowingIO);
 
 RCT_EXPORT_METHOD(track:(NSString *)eventId eventLevelVariable:(NSDictionary *)eventLevelVariable)
 {
-    [self dispatchInMainThread:^{
-        if (eventLevelVariable.count != 0) {
-            [Growing track:eventId withVariable:eventLevelVariable];
-        } else {
-            [Growing track:eventId];
-        }
-    }];
+    if (eventLevelVariable.count != 0) {
+        [Growing track:eventId withVariable:eventLevelVariable];
+    } else {
+        [Growing track:eventId];
+    }
 }
 
 RCT_EXPORT_METHOD(trackWithNumber:(NSString *)eventId number:(double)number eventLevelVariable:(NSDictionary *)eventLevelVariable)
 {
-    [self dispatchInMainThread:^{
-        if (eventLevelVariable.count != 0) {
-            [Growing track:eventId withNumber:[NSNumber numberWithDouble:number] andVariable:eventLevelVariable];
-        } else {
-            [Growing track:eventId withNumber:[NSNumber numberWithDouble:number]];
-        }
-    }];
+    if (eventLevelVariable.count != 0) {
+        [Growing track:eventId withNumber:[NSNumber numberWithDouble:number] andVariable:eventLevelVariable];
+    } else {
+        [Growing track:eventId withNumber:[NSNumber numberWithDouble:number]];
+    }
 }
 
 RCT_EXPORT_METHOD(setEvar:(NSDictionary *)conversionVariables)
 {
-    [self dispatchInMainThread:^{
-        [Growing setEvar:conversionVariables];
-    }];
+    [Growing setEvar:conversionVariables];
 }
 
 RCT_EXPORT_METHOD(setPeopleVariable:(NSDictionary *)peopleVariables)
 {
-    [self dispatchInMainThread:^{
-        [Growing setPeopleVariable:peopleVariables];
-    }];
+    [Growing setPeopleVariable:peopleVariables];
 }
 
 RCT_EXPORT_METHOD(setUserId:(NSString *)userId)
 {
-  [self dispatchInMainThread: ^{
     [Growing setUserId:userId];
-  }];
 }
 
 RCT_EXPORT_METHOD(clearUserId)
 {
-  [self dispatchInMainThread: ^{
     [Growing clearUserId];
-  }];
 }
 
 RCT_EXPORT_METHOD(setVisitor:(NSDictionary *)variable)
 {
-    [self dispatchInMainThread:^{
-        [Growing setVisitor:variable];
-    }];
+    [Growing setVisitor:variable];
 }
 
 RCT_EXPORT_METHOD(onPagePrepare:(NSString *)page)
@@ -93,10 +79,9 @@ RCT_EXPORT_METHOD(onPagePrepare:(NSString *)page)
     if (!class || !responds) {
         return;
     }
-    [self dispatchInMainThread: ^{
-        [class performSelector:@selector(onPagePrepare:) withObject:page];
+    
+    [class performSelector:@selector(onPagePrepare:) withObject:page];
         
-    }];
 }
 
 RCT_EXPORT_METHOD(onPageShow:(NSString *)page)
@@ -107,10 +92,9 @@ RCT_EXPORT_METHOD(onPageShow:(NSString *)page)
     if (!class || !responds) {
         return;
     }
-    [self dispatchInMainThread: ^{
-        [class performSelector:@selector(onPageShow:) withObject:page];
+    
+    [class performSelector:@selector(onPageShow:) withObject:page];
 
-    }];
 }
 
 RCT_EXPORT_METHOD(setPageVariable:(NSString *)page pageLevelVariables:(NSDictionary *)pageLevelVariables)
@@ -122,19 +106,12 @@ RCT_EXPORT_METHOD(setPageVariable:(NSString *)page pageLevelVariables:(NSDiction
         return;
     }
     
-    [self dispatchInMainThread: ^{
-        [class performSelector:@selector(setPageVariable:pageLevelVariables:) withObject:page withObject:pageLevelVariables];
-    }];
+    [class performSelector:@selector(setPageVariable:pageLevelVariables:) withObject:page withObject:pageLevelVariables];
 }
 
-
-- (void)dispatchInMainThread:(void (^)(void))block
+- (dispatch_queue_t)methodQueue
 {
-  if ([NSThread isMainThread]) {
-    block();
-  } else {
-    dispatch_async(dispatch_get_main_queue(), block);
-  }
+    return dispatch_get_main_queue();
 }
 
 @end

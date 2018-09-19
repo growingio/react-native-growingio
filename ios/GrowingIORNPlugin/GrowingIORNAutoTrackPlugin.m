@@ -22,10 +22,8 @@ RCT_EXPORT_METHOD(onPagePrepare:(NSString *)page)
     if (!class || !responds) {
         return;
     }
-    [self dispatchInMainThread: ^{
-        [class performSelector:@selector(onPagePrepare:) withObject:page];
-        
-    }];
+    
+    [class performSelector:@selector(onPagePrepare:) withObject:page];
 }
 
 RCT_EXPORT_METHOD(onPageShow:(NSString *)page)
@@ -36,10 +34,9 @@ RCT_EXPORT_METHOD(onPageShow:(NSString *)page)
     if (!class || !responds) {
         return;
     }
-    [self dispatchInMainThread: ^{
-        [class performSelector:@selector(onPageShow:) withObject:page];
+    
+    [class performSelector:@selector(onPageShow:) withObject:page];
         
-    }];
 }
 
 RCT_EXPORT_METHOD(prepareView:(nonnull NSNumber *)tag isClickable:(BOOL)isClickable parameters:(NSDictionary *)parameters)
@@ -54,9 +51,7 @@ RCT_EXPORT_METHOD(prepareView:(nonnull NSNumber *)tag isClickable:(BOOL)isClicka
         return;
     }
     NSDictionary *tagClickDict = @{@"tag":tag, @"isClickable":[NSNumber numberWithBool:isClickable]};
-    [self dispatchInMainThread: ^{
-        [class performSelector:@selector(prepareView:parameters:) withObject:tagClickDict withObject:parameters];
-    }];
+    [class performSelector:@selector(prepareView:parameters:) withObject:tagClickDict withObject:parameters];
 }
 
 RCT_EXPORT_METHOD(onClick:(nonnull NSNumber *)tag)
@@ -67,19 +62,13 @@ RCT_EXPORT_METHOD(onClick:(nonnull NSNumber *)tag)
     if (!class || !responds) {
         return;
     }
-    [self dispatchInMainThread: ^{
-        [class performSelector:@selector(onClick:) withObject:tag];
+    [class performSelector:@selector(onClick:) withObject:tag];
         
-    }];
 }
 
-- (void)dispatchInMainThread:(void (^)(void))block
+- (dispatch_queue_t)methodQueue
 {
-    if ([NSThread isMainThread]) {
-        block();
-    } else {
-        dispatch_async(dispatch_get_main_queue(), block);
-    }
+    return dispatch_get_main_queue();
 }
 
 @end
