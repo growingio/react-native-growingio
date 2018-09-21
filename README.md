@@ -42,16 +42,6 @@ c.在工程Build Phases ➜ Link Binary With Libraries中添加libGrowingIORNPlu
 
 * [添加官网配置](https://docs.growingio.com/sdk-20/sdk-20-api-wen-dang/ios-sdk-21-an-zhuang.html), 需要重构后的文档
 
-### android
-
-* 在Application中的onCreate方法中初始化：
-
-        GrowingIO.startWithConfiguration(this, new Configuration()
-                .useID()
-                .trackAllFragments()
-                .setChannel("**应用商店"));
-
-*  AndroidManifest.xml以及module级别build.gradle中android defaultConfig 中添加的属性，请见官网配置。 [添加官网配置](https://docs.growingio.com/sdk-20/sdk-20-api-wen-dang/android-sdk-21-an-zhuang.html)
 
 ### 四、方法说明
 
@@ -80,28 +70,8 @@ c.在工程Build Phases ➜ Link Binary With Libraries中添加libGrowingIORNPlu
 
 ### Tips
 
-* 由于最新的ReactNative 打包gradlew存在bug，所以android在打debug包和releae包时要进行如下操作：
 
-
-1. 在工程目录下
-
-        mkdir Android/app/assets
-
-2. 在app build.gradle  android中添加：
-
-
-        sourceSets {
-            main {
-                assets.srcDirs = ['assets']
-            }
-        }
-
-3. 在工程目录下：
-
-        react-native bundle --platform android --dev false --entry-file App.js --bundle-output android/app/assets/index.android.bundle  --assets-dest android/app/src/main/res/
-
-
-4. demo 可见 examples/App.js
+1. demo 可见 examples/App.js
 
 
 
