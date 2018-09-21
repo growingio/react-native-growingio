@@ -14,7 +14,7 @@ react-native-growingio 用于RN开发者手动发送数据。
 * `npm install`
 * `react-native link react-native-growingio`
 #### iOS
-* 使用CocoaPods安装GrowingCoreKit ( pod 'GrowingCoreKit', '~> 2.4.0' in your Podfile and run pod install)
+* 使用CocoaPods安装GrowingCoreKit ( pod 'GrowingCoreKit' in your Podfile and run pod update)
 * **(optional)** GrowingIO推荐您添加**AdSupport.framework**依赖库,用于来源管理激活匹配,有利于您更好的分析的数据,  
 添加项目依赖库的位置在项目设置target -> 选项卡General -> Linked Frameworks and Libraries
 
