@@ -114,4 +114,8 @@ RCT_EXPORT_METHOD(setPageVariable:(NSString *)page pageLevelVariables:(NSDiction
     return dispatch_get_main_queue();
 }
 
++ (BOOL)requiresMainQueueSetup {
+    return YES;
+}
+
 @end

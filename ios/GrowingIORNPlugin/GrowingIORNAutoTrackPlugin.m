@@ -71,4 +71,8 @@ RCT_EXPORT_METHOD(onClick:(nonnull NSNumber *)tag)
     return dispatch_get_main_queue();
 }
 
++ (BOOL)requiresMainQueueSetup {
+    return YES;
+}
+
 @end
