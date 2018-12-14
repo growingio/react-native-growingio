@@ -252,6 +252,9 @@
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/GrowingIO-iOS-CoreKit",
 					"$(inherited)",
+					"$(SRCROOT)/../../React/**",
+					"$(SRCROOT)/../react-native/React/**",
+					"$(SRCROOT)/node_modules/react-native/React/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -274,6 +277,9 @@
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/GrowingIO-iOS-CoreKit",
 					"$(inherited)",
+					"$(SRCROOT)/../../React/**",
+					"$(SRCROOT)/../react-native/React/**",
+					"$(SRCROOT)/node_modules/react-native/React/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";

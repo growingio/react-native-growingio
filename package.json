@@ -1,14 +1,14 @@
 {
   "name": "react-native-growingio",
-  "version": "0.0.1",
+  "version": "0.0.7",
   "description": "GrowingIO SDK for ReactNative",
   "main": "src/index.js",
   "files": [
-    "android",
     "ios",
     "docs",
     "scripts",
-    "src"
+    "src",
+    "GrowingReactNativeTrackKit.podspec"
   ],
   "repository": {
     "url": "https://github.com/growingio/react-native-growingio.git",
@@ -16,7 +16,6 @@
   },
   "author": "gaoguanling <gaoguanling@growingio.com>",
   "keywords": [
-    "Android",
     "IOS",
     "ReactNative",
     "GrowingIO",
