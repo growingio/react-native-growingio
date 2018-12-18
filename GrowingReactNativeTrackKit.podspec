@@ -38,6 +38,7 @@ THE SOFTWARE.
   s.source_files  = "ios/GrowingIORNPlugin/*.{h,m,mm}"
   s.dependency "React"
   s.requires_arc = true
+  s.static_framework = true
   s.dependency "GrowingCoreKit"
 
 end
